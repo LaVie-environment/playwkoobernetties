@@ -20,7 +20,7 @@ spec:
       mountPath: /tmp/git
     env:
     - name: GIT_SYNC_REPO
-      value: https://github.com/nigelpoulton/ps-sidecar.git
+      value: https://github.com/LaVie-environment/asimpleresume.git
     - name: GIT_SYNC_BRANCH
       value: master
     - name: GIT_SYNC_DEPTH
@@ -30,4 +30,16 @@ spec:
   volumes:
   - name: html
     emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-sidecar
+spec:
+  selector:
+    app: sidecar
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30001
 
